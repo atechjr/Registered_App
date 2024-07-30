@@ -31,7 +31,7 @@ pipeline {
            }
        }
     }
-        stage("SonarQube Analysis"){
+        stage ("SonarQube Analysis"){
                 steps {
 	           script {
 		        withSonarQubeEnv(credentialsId: 'jenkins2sonar'){ 
