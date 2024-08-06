@@ -31,18 +31,4 @@ pipeline {
            }
        }
     }
-        stage("SonarQube Analysis"){
-                steps {
-	          
-		        withSonarQubeEnv(credentialsId:'jenkins2sonar'){ 
-                        sh "mvn sonar:sonar"
-			}
-           }
-       }
-	stage("Quality Gate"){
-           steps {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'jenkins2sonar'
-	   }
-
-        }
-}
+  }
