@@ -11,7 +11,6 @@ pipeline {
             DOCKER_PASS = "dockerhub"
             IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
             IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-            JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
     }
     stages{
         stage("Cleanup Workspace"){
@@ -30,7 +29,6 @@ pipeline {
             steps {
                 sh "mvn clean package"
             }
-
        }
 
        stage("Test Application"){
@@ -53,7 +51,6 @@ pipeline {
                     waitForQualityGate abortPipeline: false, credentialsId: 'sonarq_jenkins_token '
                 }	
             }
-
         }
 	    stage("Build & Push Docker Image") {
             steps {
@@ -61,7 +58,6 @@ pipeline {
                     docker.withRegistry('',DOCKER_PASS) {
                         docker_image = docker.build "${IMAGE_NAME}"
                     }
-
                     docker.withRegistry('',DOCKER_PASS) {
                         docker_image.push("${IMAGE_TAG}")
                         docker_image.push('latest')
