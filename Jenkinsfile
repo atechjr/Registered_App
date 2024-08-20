@@ -8,7 +8,7 @@ pipeline {
             APP_NAME = " Registered_App"
             RELEASE = "1.0.0"
             DOCKER_USER = "atechjr"
-            DOCKER_PASS = 'dockerhubold'
+            DOCKER_PASS = 'gudaan'
             IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
             IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
     }
